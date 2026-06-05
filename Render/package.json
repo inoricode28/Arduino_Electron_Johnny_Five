@@ -1,0 +1,39 @@
+{
+  "name": "johnny_life",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win",
+    "rebuild": "npx @electron/rebuild",
+    "postinstall": "node -e \"require('fs').rmSync('node_modules/firmata/node_modules/@serialport/bindings',{recursive:true,force:true}); require('fs').rmSync('node_modules/johnny-five/node_modules/@serialport/bindings',{recursive:true,force:true})\""
+  },
+  "dependencies": {
+    "@serialport/bindings": "^10.0.1",
+    "johnny-five": "^2.1.0",
+    "jquery": "^4.0.0",
+    "serialport": "^13.0.0"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^4.0.4",
+    "docx": "^9.7.1",
+    "electron": "^42.3.3",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.johnnylife.app",
+    "productName": "Johnny Life",
+    "npmRebuild": false,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!dist",
+      "!node_modules/docx"
+    ],
+    "win": {
+      "target": "portable"
+    }
+  }
+}
